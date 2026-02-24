@@ -1,13 +1,13 @@
 import { useState, useRef } from 'react';
 
-const TodoForm = ({ onAddTask }) => {
+const TodoForm = ({ addTask }) => {
   const [title, setTitle] = useState('');
   const inputElement = useRef(null);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (!title.trim()) return;
-    onAddTask(title);
+    addTask(title);
 
     setTitle('');
     inputElement.current.focus();

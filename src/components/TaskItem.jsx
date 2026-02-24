@@ -1,4 +1,4 @@
-const Item = ({ id, title, completed, updateCompleted }) => {
+const Item = ({ id, title, completed, updateCompleted, deleteTask }) => {
   return (
     <div className="task d-flex align-items-center gap-3 mb-4 p-1" data-task-id={id}>
       <input
@@ -11,7 +11,13 @@ const Item = ({ id, title, completed, updateCompleted }) => {
       <button type="button" className="btn btn-edit-task" data-btn="edit-task" aria-label="edit task">
         <img src="/icons/edit.svg" alt="edit task" className="icon" />
       </button>
-      <button type="button" className="btn btn-delete-task" data-btn="delete-task" aria-label="delete task">
+      <button
+        type="button"
+        className="btn btn-delete-task"
+        data-btn="delete-task"
+        aria-label="delete task"
+        onClick={() => deleteTask(id)}
+      >
         <img src="/icons/trash.svg" alt="delete task" className="icon" />
       </button>
     </div>
