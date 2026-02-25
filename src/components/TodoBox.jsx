@@ -5,7 +5,8 @@ import TaskList from './TaskList';
 const TodoBox = () => {
   const [tasks, setTask] = useState([]);
 
-  const AddTask = (title) => setTask([{ id: crypto.randomUUID(), title: title, completed: false }, ...tasks]);
+  const AddTask = (title) =>
+    setTask([{ id: crypto.randomUUID(), title: title, completed: false, editMode: false }, ...tasks]);
 
   const updateCompletedTask = (id) =>
     setTask((prevTasks) =>
@@ -13,6 +14,16 @@ const TodoBox = () => {
     );
 
   const deleteTask = (id) => setTask((prevTasks) => prevTasks.filter((task) => task.id !== id));
+
+  const toggleEditMode = (id) =>
+    setTask((prevTasks) =>
+      prevTasks.map((task) => (task.id === id ? { ...task, editMode: !task.editMode } : task)),
+    );
+
+  const updateTitle = (id, newTitle) => {
+    toggleEditMode(id);
+    setTask((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, title: newTitle } : task)));
+  };
 
   console.log(tasks);
   return (
@@ -22,7 +33,13 @@ const TodoBox = () => {
         className="container todo-container max-w-50 px-3 pt-3 pb-2 px-md-4 pt-md-4 pb-md-2 px-lg-5 pt-lg-5 pb-lg-4"
       >
         <TodoForm addTask={AddTask} />
-        <TaskList tasks={tasks} updateCompleted={updateCompletedTask} deleteTask={deleteTask} />
+        <TaskList
+          tasks={tasks}
+          updateCompleted={updateCompletedTask}
+          deleteTask={deleteTask}
+          toggleEditMode={toggleEditMode}
+          updateTitle={updateTitle}
+        />
       </div>
       <div
         id="notifications"
