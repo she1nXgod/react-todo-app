@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TodoForm from './TodoForm';
 import TaskList from './TaskList';
 
 const TodoBox = () => {
-  const [tasks, setTask] = useState([]);
+  const [tasks, setTask] = useState(() => {
+    const localData = localStorage.getItem('tasks');
+    return JSON.parse(localData).map((task) => ({ ...task, editMode: false })) || [];
+  });
+  const [currentFilter, onFilterChange] = useState('All');
+
+  useEffect(() => localStorage.setItem('tasks', JSON.stringify(tasks)), [tasks]);
+
+  const filteredTasks = {
+    All: tasks,
+    Active: tasks.filter(({ completed }) => !completed),
+    Completed: tasks.filter(({ completed }) => completed),
+  };
 
   const AddTask = (title) =>
     setTask([{ id: crypto.randomUUID(), title: title, completed: false, editMode: false }, ...tasks]);
@@ -32,19 +44,15 @@ const TodoBox = () => {
         id="app-container"
         className="container todo-container max-w-50 px-3 pt-3 pb-2 px-md-4 pt-md-4 pb-md-2 px-lg-5 pt-lg-5 pb-lg-4"
       >
-        <TodoForm addTask={AddTask} />
+        <TodoForm addTask={AddTask} currentFilter={currentFilter} onFilterChange={onFilterChange} />
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks[currentFilter]}
           updateCompleted={updateCompletedTask}
           deleteTask={deleteTask}
           toggleEditMode={toggleEditMode}
           updateTitle={updateTitle}
         />
       </div>
-      <div
-        id="notifications"
-        className="notifications-list d-flex flex-column justify-content-end align-items-end px-3 py-2"
-      ></div>
     </div>
   );
 };

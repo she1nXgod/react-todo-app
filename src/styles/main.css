@@ -106,6 +106,21 @@
   width: 45px;
 }
 
+.custom-dropdown button {
+  width: 45px;
+  height: 45px;
+}
+
+.custom-dropdown button::after {
+  transition: var(--transition-base);
+  transform: scale(1.2);
+}
+
+.custom-dropdown.show button::after {
+  transition: var(--transition-base);
+  transform: rotate(180deg);
+}
+
 .tasks-list {
   max-height: 40vh;
   overflow-y: auto;

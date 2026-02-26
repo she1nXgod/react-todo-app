@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
+import TaskFilter from './TaskFilter';
 
-const TodoForm = ({ addTask }) => {
+const TodoForm = ({ addTask, currentFilter, onFilterChange }) => {
   const [title, setTitle] = useState('');
   const inputElement = useRef(null);
 
@@ -15,6 +16,7 @@ const TodoForm = ({ addTask }) => {
 
   return (
     <form id="task-form" className="row pb-2 pb-md-3 pb-lg-4" onSubmit={handleFormSubmit}>
+      <TaskFilter currentFilter={currentFilter} onFilterChange={onFilterChange} />
       <div className="col">
         <input
           value={title}
