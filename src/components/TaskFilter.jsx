@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { TaskContext } from '../context/TaskContext.js';
 
-const TaskFilter = ({ currentFilter, onFilterChange }) => {
+const TaskFilter = () => {
+  const { currentFilter, onFilterChange } = useContext(TaskContext);
   return (
     <DropdownButton id="dropdown-basic-button" className="col-auto custom-dropdown" title="">
       <Dropdown.Item href="#/all" active={currentFilter === 'All'} onClick={() => onFilterChange('All')}>

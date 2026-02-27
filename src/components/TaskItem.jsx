@@ -1,16 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { TaskContext } from '../context/TaskContext.js';
 
-const Item = ({
-  id,
-  title,
-  completed,
-  editMode,
-  updateCompleted,
-  deleteTask,
-  toggleEditMode,
-  updateTitle,
-}) => {
+const Item = ({ id, title, completed, editMode }) => {
   const [newTitle, setNewTitle] = useState(title);
+  const { updateCompleted, deleteTask, toggleEditMode, updateTitle } = useContext(TaskContext);
 
   const editContent = (
     <form
