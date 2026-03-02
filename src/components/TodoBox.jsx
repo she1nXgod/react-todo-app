@@ -1,6 +1,6 @@
 import TodoForm from './TodoForm';
 import TaskList from './TaskList';
-
+import { Toaster } from 'react-hot-toast';
 const TodoBox = () => {
   return (
     <div className="root d-flex justify-content-center align-items-center min-vh-100">
@@ -11,6 +11,7 @@ const TodoBox = () => {
         <TodoForm />
         <TaskList />
       </div>
+      <Toaster position="bottom-right" />
     </div>
   );
 };

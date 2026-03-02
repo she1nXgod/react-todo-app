@@ -1,6 +1,7 @@
 import { useState, useRef, useContext } from 'react';
 import TaskFilter from './TaskFilter';
 import { TaskContext } from '../context/TaskContext.js';
+import toast from 'react-hot-toast';
 
 const TodoForm = () => {
   const [title, setTitle] = useState('');
@@ -9,9 +10,14 @@ const TodoForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (!title.trim()) return;
-    addTask(title);
+    if (!title.trim()) {
+      toast.error('Please enter a task title');
+      setTitle('');
+      inputElement.current.focus();
+      return;
+    }
 
+    addTask(title);
     setTitle('');
     inputElement.current.focus();
   };
@@ -23,7 +29,6 @@ const TodoForm = () => {
         <input
           value={title}
           ref={inputElement}
-          required={true}
           type="text"
           className="form-control task-entry-form"
           id="task-input"
