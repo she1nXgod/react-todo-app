@@ -2,6 +2,7 @@ import { useState, useRef, useContext } from 'react';
 import TaskFilter from './TaskFilter';
 import { TaskContext } from '../context/TaskContext.js';
 import toast from 'react-hot-toast';
+import Button from './Button.jsx';
 
 const TodoForm = () => {
   const [title, setTitle] = useState('');
@@ -31,7 +32,6 @@ const TodoForm = () => {
           ref={inputElement}
           type="text"
           className="form-control task-entry-form"
-          id="task-input"
           placeholder="Add new task"
           aria-label="add task title"
           autoComplete="off"
@@ -39,14 +39,9 @@ const TodoForm = () => {
         />
       </div>
       <div className="col-auto">
-        <button
-          type="submit"
-          id="task-add-btn"
-          className="btn btn-primary task-add-btn"
-          aria-label="add task"
-        >
+        <Button type="submit" className="btn-primary task-add-btn" aria-label="add task">
           +
-        </button>
+        </Button>
       </div>
     </form>
   );
