@@ -3,6 +3,7 @@ import TaskFilter from './TaskFilter';
 import { TaskContext } from '../context/TaskContext.js';
 import toast from 'react-hot-toast';
 import Button from './Button.jsx';
+import { ICONS } from '../assets/icons/index.js';
 
 const TodoForm = () => {
   const [title, setTitle] = useState('');
@@ -39,8 +40,8 @@ const TodoForm = () => {
         />
       </div>
       <div className="col-auto">
-        <Button type="submit" className="btn-primary task-add-btn" aria-label="add task">
-          +
+        <Button type="submit" className="task-add-btn" aria-label="add task">
+          <img src={ICONS.addTask} alt="" className="icon" />
         </Button>
       </div>
     </form>

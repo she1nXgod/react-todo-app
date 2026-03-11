@@ -86,7 +86,20 @@
   font-family: 'Pinyon Script', cursive;
   font-size: 75px;
   font-weight: 400;
-  font-style: normal;
+
+  background: linear-gradient(to right, #fff 20%, #888888 40%, #fff 60%, #fff 80%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .task-entry-form {
@@ -101,7 +114,11 @@
 }
 
 #task-form .task-add-btn {
+  display: flex;
   font-size: var(--font-size-lg);
+  background: var(--color-primary);
+  align-items: center;
+  justify-content: center;
   height: 45px;
   width: 45px;
 }
@@ -147,6 +164,10 @@
     color-stop(0.72, rgb(73, 125, 189)),
     color-stop(0.86, rgb(28, 58, 148))
   );
+}
+
+.task {
+  cursor: pointer;
 }
 
 .checkbox-task {
@@ -203,30 +224,4 @@
   height: 25px;
   width: 25px;
   transition: var(--transition-base);
-}
-
-.btn:hover .icon {
-  transform: rotate(+10deg) scale(1.1);
-}
-
-.notifications-list {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.notification {
-  height: 40px;
-  gap: 10px;
-  font-size: var(--font-size-sm);
-
-  background: var(--color-bg-main);
-  box-shadow: var(--shadow-md);
-  border-radius: var(--radius-md);
-
-  transition: opacity 0.8s ease;
-}
-
-.notification-fade-out {
-  opacity: 0;
 }
