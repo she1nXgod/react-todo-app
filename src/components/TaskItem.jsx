@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { TaskContext } from '../context/TaskContext.js';
 import Button from './Button.jsx';
 import { ICONS } from '../assets/icons/index.js';
@@ -6,7 +6,14 @@ import { motion } from 'motion/react';
 
 const Item = ({ id, title, completed, editMode }) => {
   const [newTitle, setNewTitle] = useState(title);
+  const inputElement = useRef(null);
   const { updateCompleted, deleteTask, toggleEditMode, updateTitle } = useContext(TaskContext);
+
+  useEffect(() => {
+    if (editMode && inputElement.current) {
+      inputElement.current.focus();
+    }
+  }, [editMode]);
 
   const normalContent = (
     <motion.div
@@ -66,6 +73,7 @@ const Item = ({ id, title, completed, editMode }) => {
       <input
         type="text"
         value={newTitle}
+        ref={inputElement}
         className="m-0 w-100 task-title form-control task-edit-input"
         autoComplete="off"
         onChange={(e) => setNewTitle(e.target.value)}

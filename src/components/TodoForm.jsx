@@ -25,13 +25,13 @@ const TodoForm = () => {
   };
 
   return (
-    <form id="task-form" className="row pb-2 pb-md-3 pb-lg-4" onSubmit={handleFormSubmit}>
+    <form id="task-form" className="row pb-3 pb-lg-4" onSubmit={handleFormSubmit}>
       <TaskFilter />
       <div className="col">
         <input
+          type="text"
           value={title}
           ref={inputElement}
-          type="text"
           className="form-control task-entry-form"
           placeholder="Add new task"
           aria-label="add task title"
