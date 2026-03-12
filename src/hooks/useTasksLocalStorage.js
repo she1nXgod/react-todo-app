@@ -3,8 +3,8 @@ import { useState } from 'react';
 const useTasksLocalStorage = () => {
   const [savedTasks, setSavedTasks] = useState(() => {
     const dataTasks = localStorage.getItem('tasks');
-    const parseDataTasks = JSON.parse(dataTasks).map((task) => ({ ...task, editMode: false }));
-    return dataTasks ? parseDataTasks : null;
+    const parsed = dataTasks ? JSON.parse(dataTasks) : [];
+    return parsed.map((task) => ({ ...task, editMode: false }));
   });
 
   const saveTasks = (tasks) => {
