@@ -19,10 +19,9 @@ const Item = ({ id, title, completed, editMode }) => {
     <motion.div
       key={id}
       layout
-      initial={{ x: 30, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: -30, opacity: 0 }}
-      transition={{ duration: 0.1 }}
+      initial={{ y: -15, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.2 }}
       className="task d-flex align-items-center gap-3 mb-4 p-1"
       data-task-id={id}
       onClick={() => updateCompleted(id)}
