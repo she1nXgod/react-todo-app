@@ -3,7 +3,8 @@ import useTasks from '../hooks/useTasks.js';
 import useTasksFilter from '../hooks/useTasksFilter.js';
 
 export const TaskProvider = ({ children }) => {
-  const { tasks, addTask, updateCompleted, deleteTask, updateTitle, toggleEditMode } = useTasks();
+  const { tasks, addTask, updateCompleted, deleteTask, updateTitle, toggleEditMode, handleDragEnd } =
+    useTasks();
 
   const { currentFilter, onFilterChange, filteredTasks } = useTasksFilter(tasks);
 
@@ -19,6 +20,7 @@ export const TaskProvider = ({ children }) => {
         deleteTask,
         updateTitle,
         toggleEditMode,
+        handleDragEnd,
       }}
     >
       {children}

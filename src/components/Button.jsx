@@ -9,7 +9,7 @@ const Button = ({ type = 'button', children, className, ...props }) => {
       {...props}
       whileHover={{
         y: -1.5,
-        opacity: 0.7,
+        opacity: 0.6,
       }}
     >
       {children}

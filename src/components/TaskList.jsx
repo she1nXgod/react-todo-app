@@ -1,20 +1,24 @@
 import { useContext } from 'react';
 import TaskItem from './TaskItem';
 import { TaskContext } from '../context/TaskContext.js';
-import { AnimatePresence } from 'motion/react';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 const TaskList = () => {
   const { tasks } = useContext(TaskContext);
 
   return (
     <main id="tasks" className="tasks-list">
-      <div style={{ overflow: 'hidden' }}>
-        <AnimatePresence>
-          {tasks.map(({ id, title, completed, editMode }) => (
-            <TaskItem key={id} title={title} id={id} completed={completed} editMode={editMode} />
-          ))}
-        </AnimatePresence>
-      </div>
+      <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
+        {tasks.map((task) => (
+          <TaskItem
+            key={task.id}
+            title={task.title}
+            id={task.id}
+            completed={task.completed}
+            editMode={task.editMode}
+          />
+        ))}
+      </SortableContext>
     </main>
   );
 };
