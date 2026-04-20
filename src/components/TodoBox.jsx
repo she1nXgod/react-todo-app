@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { TaskContext } from '../context/TaskContext';
 import { Toaster } from 'react-hot-toast';
 import { DndContext, PointerSensor, TouchSensor, closestCorners, useSensor, useSensors } from '@dnd-kit/core';
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
+import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 
 const TodoBox = () => {
   const { handleDragEnd } = useContext(TaskContext);
@@ -29,7 +29,7 @@ const TodoBox = () => {
           sensors={sensors}
           onDragEnd={handleDragEnd}
           collisionDetection={closestCorners}
-          modifiers={[restrictToVerticalAxis]}
+          modifiers={[restrictToVerticalAxis, restrictToParentElement]}
         >
           <TaskList />
         </DndContext>
